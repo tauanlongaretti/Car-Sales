@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState, useReducer } from 'react';
+import { initialState, carReducer } from "../reducer/reducer";
 import AdditionalFeature from './AdditionalFeature';
+import { connect } from "react-redux";
 
-const AdditionalFeatures = props => {
+const AdditionalFeatures = () => {
+  const [state, dispatch] = useReducer(carReducer, initialState);
+
   return (
     <div className="content">
       <h4>Additional Features</h4>
-      {props.additionalFeatures.length ? (
+      {state.additionalFeatures.length ? (
         <ol type="1">
-          {props.additionalFeatures.map(item => (
+          {state.additionalFeatures.map(item => (
             <AdditionalFeature key={item.id} feature={item} />
           ))}
         </ol>
